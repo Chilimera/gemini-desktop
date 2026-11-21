@@ -1,0 +1,30 @@
+{
+  "name": "gemini-desktop",
+  "version": "1.0.0",
+  "description": "Локальное десктопное приложение Gemini с интерфейсом сайта и прямыми запросами к моделям",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "build:win": "electron-builder --win",
+    "build:mac": "electron-builder --mac",
+    "build:linux": "electron-builder --linux"
+  },
+  "keywords": ["gemini", "ai", "desktop", "electron", "local"],
+  "license": "MIT",
+  "devDependencies": {
+    "electron": "^33.0.0",
+    "electron-builder": "^25.0.0"
+  },
+  "build": {
+    "appId": "com.local.gemini.desktop",
+    "productName": "Gemini Desktop",
+    "files": [
+      "main.js",
+      "preload.js",
+      "renderer/**/*"
+    ],
+    "win": { "target": "nsis" },
+    "mac": { "target": "dmg" },
+    "linux": { "target": "AppImage" }
+  }
+}
