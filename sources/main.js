@@ -1,8 +1,8 @@
-const { app, BrowserWindow, ipcMain, dialog, shell } = require('electron');
+const { app, BrowserWindow, ipcMain, dialog, shell, Menu } = require('electron');
 const path = require('path');
 const fs = require('fs');
 
-const DATA_DIR = path.join(app.getPath('userData'), 'gemini-local-data');
+const DATA_DIR = path.join(app.getPath('appData'), 'GeminiDesktop');
 const DATA_FILE = path.join(DATA_DIR, 'store.json');
 
 function ensureDataDir() {
@@ -14,12 +14,12 @@ function ensureDataDir() {
 function readStore() {
   ensureDataDir();
   if (!fs.existsSync(DATA_FILE)) {
-    return { chats: [], settings: {} };
+    return { chats: [], tasks: [], settings: {} };
   }
   try {
     return JSON.parse(fs.readFileSync(DATA_FILE, 'utf-8'));
   } catch {
-    return { chats: [], settings: {} };
+    return { chats: [], tasks: [], settings: {} };
   }
 }
 
@@ -29,19 +29,30 @@ function writeStore(data) {
 }
 
 function createWindow() {
+  const iconPath = path.join(__dirname, 'icon.ico');
   const win = new BrowserWindow({
     width: 1280,
     height: 840,
     minWidth: 760,
     minHeight: 540,
     title: 'Gemini',
-    backgroundColor: '#131314',
-    autoHideMenuBar: true,
+    icon: fs.existsSync(iconPath) ? iconPath : undefined,
+    backgroundColor: '#111214',
     webPreferences: {
       preload: path.join(__dirname, 'preload.js'),
       contextIsolation: true,
       nodeIntegration: false,
       sandbox: false
+    }
+  });
+
+  Menu.setApplicationMenu(null);
+  win.removeMenu();
+
+  win.webContents.on('before-input-event', (event, input) => {
+    if (input.type === 'keyDown' && input.key === 'F11') {
+      win.setFullScreen(!win.isFullScreen());
+      event.preventDefault();
     }
   });
 
@@ -88,12 +99,16 @@ app.whenReady().then(() => {
     });
   });
 
-  ipcMain.handle('dialog:saveFile', async (_event, { defaultName, content }) => {
+  ipcMain.handle('dialog:saveFile', async (_event, { defaultName, content, base64 }) => {
     const result = await dialog.showSaveDialog({
-      defaultPath: defaultName || 'gemini-chat.md'
+      defaultPath: defaultName || 'gemini-export.txt'
     });
     if (result.canceled || !result.filePath) return { saved: false };
-    fs.writeFileSync(result.filePath, content, 'utf-8');
+    if (base64) {
+      fs.writeFileSync(result.filePath, Buffer.from(base64, 'base64'));
+    } else {
+      fs.writeFileSync(result.filePath, content || '', 'utf-8');
+    }
     return { saved: true, filePath: result.filePath };
   });
 

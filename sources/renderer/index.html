@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ru" data-theme="dark">
+<html lang="ru" data-theme="gemini-dark">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -9,66 +9,52 @@
 <body>
   <div id="app" class="app-shell">
     <!-- Боковая панель -->
-    <aside id="sidebar" class="sidebar" aria-label="Навигация по чатам">
+    <aside id="sidebar" class="sidebar" aria-label="Навигация">
       <div class="sidebar-top">
-        <button id="btn-toggle-sidebar" class="icon-btn" title="Свернуть меню" aria-label="Свернуть меню">
-          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+        <button id="btn-toggle-sidebar" class="icon-btn" title="Свернуть меню">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
             <line x1="3" y1="6" x2="21" y2="6"></line>
             <line x1="3" y1="12" x2="21" y2="12"></line>
             <line x1="3" y1="18" x2="21" y2="18"></line>
           </svg>
         </button>
         <div class="sidebar-search-wrap">
-          <svg class="search-icon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
+          <svg class="search-icon" viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2">
             <circle cx="11" cy="11" r="7"></circle>
             <line x1="16.5" y1="16.5" x2="21" y2="21"></line>
           </svg>
-          <input id="chat-search" type="text" placeholder="Поиск чатов..." autocomplete="off" />
+          <input id="chat-search" type="text" data-i18n-placeholder="search" placeholder="Поиск" autocomplete="off" />
         </div>
       </div>
 
       <button id="btn-new-chat" class="new-chat-btn">
         <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
-          <line x1="12" y1="5" x2="12" y2="19"></line>
-          <line x1="5" y1="12" x2="19" y2="12"></line>
+          <path d="M12 5v14M5 12h14"></path>
         </svg>
-        <span>Новый чат</span>
+        <span data-i18n="newChat">Новый чат</span>
       </button>
 
       <div class="sidebar-scroll">
         <div id="pinned-section" class="chat-section hidden">
-          <div class="section-label">Закреплённые</div>
+          <div class="section-label" data-i18n="pinned">Закреплённые</div>
           <ul id="pinned-list" class="chat-list"></ul>
         </div>
 
         <div class="chat-section">
-          <div class="section-label">Недавние</div>
+          <div class="section-label" data-i18n="recent">Недавние</div>
           <ul id="recent-list" class="chat-list"></ul>
-          <div id="empty-history" class="empty-history hidden">История чатов пуста</div>
+          <div id="empty-history" class="empty-history hidden" data-i18n="noChats">Нет чатов</div>
         </div>
       </div>
 
       <div class="sidebar-bottom">
-        <button id="btn-theme-toggle" class="sidebar-footer-btn" title="Переключить тему">
-          <svg id="icon-theme" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
-            <circle cx="12" cy="12" r="4"></circle>
-            <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"></path>
-          </svg>
-          <span id="theme-label">Светлая тема</span>
-        </button>
-
         <button id="btn-settings" class="sidebar-footer-btn">
           <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
             <circle cx="12" cy="12" r="3"></circle>
             <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9c.26.6.77 1 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
           </svg>
-          <span>Настройки и API</span>
+          <span data-i18n="settings">Настройки</span>
         </button>
-
-        <div class="local-badge">
-          <span class="dot"></span>
-          <span>100% локально</span>
-        </div>
       </div>
     </aside>
 
@@ -76,8 +62,8 @@
     <div class="main-wrapper">
       <header class="topbar">
         <div class="topbar-left">
-          <button id="btn-open-sidebar" class="icon-btn hidden" title="Открыть меню" aria-label="Открыть меню">
-            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+          <button id="btn-open-sidebar" class="icon-btn hidden" title="Открыть меню">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
               <line x1="3" y1="6" x2="21" y2="6"></line>
               <line x1="3" y1="12" x2="21" y2="12"></line>
               <line x1="3" y1="18" x2="21" y2="18"></line>
@@ -88,15 +74,20 @@
             <span class="brand-title">Gemini</span>
             <div class="model-dropdown-container">
               <button id="btn-model-dropdown" class="model-pill" type="button">
-                <span id="current-model-label">Gemini 4 Hydrogen</span>
-                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
+                <span id="current-model-dot" class="avail-dot unknown"></span>
+                <span id="current-model-label">Gemini 3.8 Flash</span>
+                <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2">
                   <polyline points="6 9 12 15 18 9"></polyline>
                 </svg>
               </button>
+
               <div id="model-menu" class="model-menu hidden">
                 <div class="model-menu-header">
-                  <span>Выберите модель</span>
-                  <button id="btn-refresh-models" class="text-btn" title="Загрузить список доступных моделей из API">Обновить из API</button>
+                  <span data-i18n="models">Модели</span>
+                  <div class="model-menu-actions">
+                    <button id="btn-check-models" class="text-btn" data-i18n="check">Проверить</button>
+                    <button id="btn-refresh-models" class="text-btn" data-i18n="refresh">Обновить</button>
+                  </div>
                 </div>
                 <div id="model-options" class="model-options"></div>
               </div>
@@ -105,19 +96,49 @@
         </div>
 
         <div class="topbar-right">
-          <button id="btn-api-status" class="status-pill" title="Настроить API-ключ">
-            <span class="status-dot"></span>
-            <span id="api-status-text">Нет API-ключа</span>
+          <button id="btn-toggle-tasks-panel" class="header-chip-btn">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="9 11 12 14 22 4"></polyline>
+              <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path>
+            </svg>
+            <span data-i18n="tasks">Задачи</span>
+            <span id="tasks-count-badge" class="count-badge hidden">0</span>
           </button>
-          <button id="btn-export-chat" class="icon-btn" title="Экспорт чата в Markdown">
-            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
+
+          <div class="token-menu-wrap">
+            <button id="btn-token-stats" class="header-chip-btn subtle-chip" type="button" title="Статистика токенов">
+              <span class="token-icon">◈</span>
+              <span id="token-short-total">0</span>
+            </button>
+            <div id="token-popover" class="token-popover hidden">
+              <div class="token-popover-head">
+                <span data-i18n="tokenStatsTitle">Расход токенов</span>
+                <button id="btn-reset-tokens" class="text-btn" type="button" data-i18n="reset">Сбросить</button>
+              </div>
+              <div class="token-stat-row"><span data-i18n="tokensChatIn">Чат (вход)</span><strong id="tok-chat-in">0</strong></div>
+              <div class="token-stat-row"><span data-i18n="tokensChatOut">Чат (выход)</span><strong id="tok-chat-out">0</strong></div>
+              <div class="token-stat-row"><span data-i18n="tokensChatTotal">Чат (всего)</span><strong id="tok-chat-total">0</strong></div>
+              <div class="token-divider"></div>
+              <div class="token-stat-row"><span data-i18n="tokensToday">За сегодня</span><strong id="tok-today-total">0</strong></div>
+              <div class="token-stat-row"><span data-i18n="tokensAllTime">За всё время</span><strong id="tok-all-total">0</strong></div>
+            </div>
+          </div>
+
+          <button id="btn-api-status" class="status-pill">
+            <span class="status-dot"></span>
+            <span id="api-status-text">API не настроен</span>
+          </button>
+
+          <button id="btn-export-chat" class="icon-btn" title="Export">
+            <svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="2">
               <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
               <polyline points="7 10 12 15 17 10"></polyline>
               <line x1="12" y1="15" x2="12" y2="3"></line>
             </svg>
           </button>
-          <button id="btn-toggle-canvas" class="icon-btn" title="Панель Canvas">
-            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
+
+          <button id="btn-toggle-canvas" class="icon-btn" title="Canvas">
+            <svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="2">
               <rect x="3" y="3" width="18" height="18" rx="2"></rect>
               <line x1="15" y1="3" x2="15" y2="21"></line>
             </svg>
@@ -127,10 +148,10 @@
 
       <div class="workspace-split">
         <main id="chat-area" class="chat-area">
-          <!-- Экран приветствия -->
+          <!-- Чистый экран приветствия -->
           <section id="welcome-view" class="welcome-view">
             <div class="welcome-sparkle">
-              <svg viewBox="0 0 48 48" width="44" height="44">
+              <svg viewBox="0 0 48 48" width="48" height="48">
                 <defs>
                   <linearGradient id="geminiGrad" x1="0%" y1="0%" x2="100%" y2="100%">
                     <stop offset="0%" stop-color="#4285f4" />
@@ -141,70 +162,65 @@
                 <path fill="url(#geminiGrad)" d="M24 2C24 14.15 14.15 24 2 24C14.15 24 24 33.85 24 46C24 33.85 33.85 24 46 24C33.85 24 24 14.15 24 2Z" />
               </svg>
             </div>
-            <h1 class="welcome-title">Привет! Чем помочь?</h1>
-            <p class="welcome-subtitle">Все чаты хранятся локально на вашем устройстве. Запросы отправляются напрямую в API моделей.</p>
-
-            <div class="suggestion-grid">
-              <button class="suggestion-card" data-prompt="Напиши чистый Python-скрипт для парсинга JSON и сохранения в CSV с обработкой ошибок">
-                <span class="s-icon">💻</span>
-                <span class="s-text">Написать код на Python для работы с JSON и CSV</span>
-              </button>
-              <button class="suggestion-card" data-prompt="Объясни простыми словами, как работают трансформеры и механизм внимания (Attention) в LLM">
-                <span class="s-icon">🧠</span>
-                <span class="s-text">Объяснить архитектуру трансформеров простыми словами</span>
-              </button>
-              <button class="suggestion-card" data-prompt="Создай интерактивную HTML-страницу с калькулятором сложных процентов и красивым тёмным дизайном">
-                <span class="s-icon">✨</span>
-                <span class="s-text">Сверстать интерактивный HTML-калькулятор для Canvas</span>
-              </button>
-              <button class="suggestion-card" data-prompt="Помоги составить план изучения системного дизайна на 4 недели с ключевыми темами и практикой">
-                <span class="s-icon">📋</span>
-                <span class="s-text">Составить план изучения System Design на 4 недели</span>
-              </button>
-            </div>
+            <h1 id="welcome-greeting" class="welcome-title">Привет! Чем помочь?</h1>
           </section>
 
-          <!-- Поток сообщений -->
           <section id="messages-container" class="messages-container hidden"></section>
 
-          <!-- Поле ввода -->
           <div class="composer-wrap">
-            <div id="drop-overlay" class="drop-overlay hidden">Перетащите файлы сюда (изображения, PDF, код, текст)</div>
+            <div id="drop-overlay" class="drop-overlay hidden" data-i18n="dropFiles">Перетащите файлы сюда</div>
             <div class="composer-box">
               <div id="attachments-preview" class="attachments-preview hidden"></div>
 
-              <textarea id="prompt-input" rows="1" placeholder="Спросите Gemini..." data-ms-editor="false" autocomplete="off"></textarea>
+              <textarea id="prompt-input" rows="1" data-i18n-placeholder="askGemini" placeholder="Спросите Gemini..." data-ms-editor="false" autocomplete="off"></textarea>
 
               <div class="composer-toolbar">
                 <div class="toolbar-left">
                   <input id="file-input" type="file" multiple class="hidden" />
-                  <button id="btn-attach" class="tool-btn" type="button" title="Прикрепить файлы или изображения">
+                  <button id="btn-attach" class="tool-btn" type="button">
                     <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
                       <line x1="12" y1="5" x2="12" y2="19"></line>
                       <line x1="5" y1="12" x2="19" y2="12"></line>
                     </svg>
                   </button>
 
-                  <button id="btn-toggle-thinking" class="chip-toggle" type="button" title="Включить отображение рассуждений (Thinking)">
+                  <button id="btn-toggle-project-mode" class="chip-toggle" type="button">
+                    <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2">
+                      <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
+                      <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
+                      <line x1="12" y1="22.08" x2="12" y2="12"></line>
+                    </svg>
+                    <span data-i18n="projectChip">Проект (ZIP)</span>
+                  </button>
+
+                  <button id="btn-toggle-tasks-mode" class="chip-toggle" type="button">
+                    <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2">
+                      <polyline points="9 11 12 14 22 4"></polyline>
+                      <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path>
+                    </svg>
+                    <span data-i18n="tasks">Задачи</span>
+                  </button>
+
+                  <button id="btn-toggle-thinking" class="chip-toggle" type="button">
                     <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2">
                       <path d="M9 18h6M10 22h4M12 2a7 7 0 0 0-4 12.7V17h8v-2.3A7 7 0 0 0 12 2z"></path>
                     </svg>
                     <span>Thinking</span>
                   </button>
 
-                  <button id="btn-toggle-search" class="chip-toggle" type="button" title="Использовать Google Search Grounding в запросе к модели">
+                  <button id="btn-toggle-search" class="chip-toggle" type="button">
                     <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2">
                       <circle cx="12" cy="12" r="10"></circle>
                       <line x1="2" y1="12" x2="22" y2="12"></line>
                       <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
                     </svg>
-                    <span>Поиск</span>
+                    <span data-i18n="searchChip">Поиск</span>
                   </button>
                 </div>
 
                 <div class="toolbar-right">
-                  <button id="btn-send" class="send-btn" type="button" title="Отправить (Enter)">
-                    <svg id="icon-send" viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
+                  <button id="btn-send" class="send-btn" type="button">
+                    <svg id="icon-send" viewBox="0 0 24 24" width="19" height="19" fill="currentColor">
                       <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"></path>
                     </svg>
                     <svg id="icon-stop" class="hidden" viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
@@ -214,24 +230,43 @@
                 </div>
               </div>
             </div>
-            <div class="composer-disclaimer">
-              Локальный клиент Gemini • Запросы отправляются напрямую к выбранному API моделей
+            <div class="composer-disclaimer" data-i18n="disclaimer">
+              Gemini может допускать ошибки. Проверяйте важную информацию.
             </div>
           </div>
         </main>
 
+        <!-- Панель задач -->
+        <aside id="tasks-panel" class="side-panel hidden">
+          <div class="panel-header">
+            <div class="panel-title-wrap">
+              <span data-i18n="tasks">Задачи</span>
+              <span id="tasks-panel-count" class="badge">0</span>
+            </div>
+            <div class="panel-actions">
+              <button id="btn-clear-done-tasks" class="text-btn" data-i18n="clearDone">Очистить выполненные</button>
+              <button id="btn-close-tasks" class="icon-btn">✕</button>
+            </div>
+          </div>
+          <div class="task-add-row">
+            <input id="new-task-input" type="text" data-i18n-placeholder="newTask" placeholder="Новая задача..." autocomplete="off" />
+            <button id="btn-add-task" class="primary-btn small-btn" type="button">+</button>
+          </div>
+          <div id="tasks-list-body" class="tasks-list-body"></div>
+        </aside>
+
         <!-- Панель Canvas -->
-        <aside id="canvas-panel" class="canvas-panel hidden">
-          <div class="canvas-header">
-            <div class="canvas-title-wrap">
+        <aside id="canvas-panel" class="side-panel hidden">
+          <div class="panel-header">
+            <div class="panel-title-wrap">
               <span id="canvas-title">Canvas</span>
               <span id="canvas-lang-badge" class="badge">text</span>
             </div>
-            <div class="canvas-actions">
-              <button id="btn-canvas-preview" class="text-btn hidden">Предпросмотр</button>
-              <button id="btn-canvas-code" class="text-btn hidden">Код</button>
-              <button id="btn-canvas-copy" class="text-btn">Копировать</button>
-              <button id="btn-canvas-close" class="icon-btn" title="Закрыть Canvas">✕</button>
+            <div class="panel-actions">
+              <button id="btn-canvas-preview" class="text-btn hidden" data-i18n="preview">Предпросмотр</button>
+              <button id="btn-canvas-code" class="text-btn hidden" data-i18n="code">Код</button>
+              <button id="btn-canvas-copy" class="text-btn" data-i18n="copy">Копировать</button>
+              <button id="btn-canvas-close" class="icon-btn">✕</button>
             </div>
           </div>
           <div class="canvas-body">
@@ -243,55 +278,257 @@
     </div>
   </div>
 
-  <!-- Модальное окно настроек -->
-  <div id="settings-modal" class="modal-backdrop hidden" role="dialog" aria-modal="true">
-    <div class="modal-card">
-      <div class="modal-header">
-        <h2>Настройки Gemini Desktop</h2>
-        <button id="btn-close-settings" class="icon-btn" aria-label="Закрыть">✕</button>
-      </div>
-      <div class="modal-body">
-        <div class="form-group">
-          <label for="input-api-key">Gemini API Key</label>
-          <div class="input-row">
-            <input id="input-api-key" type="password" placeholder="AIzaSy..." autocomplete="off" />
-            <button id="btn-toggle-key-vis" class="text-btn" type="button">Показать</button>
+  <!-- Настройки с вкладками -->
+  <div id="settings-modal" class="settings-overlay hidden" role="dialog" aria-modal="true">
+    <div class="settings-shell">
+      <div class="settings-topbar">
+        <h1 data-i18n="workspaceTitle">Ваше пространство</h1>
+        <div class="settings-topbar-right">
+          <div class="lang-switch" role="group" aria-label="Language">
+            <button type="button" class="lang-btn active" data-lang="ru">RU</button>
+            <button type="button" class="lang-btn" data-lang="en">EN</button>
           </div>
-          <small>Хранится только локально. Получить ключ можно в <a href="https://aistudio.google.com/apikey" target="_blank" rel="noopener">Google AI Studio</a>.</small>
-        </div>
-
-        <div class="form-group">
-          <label for="input-base-url">Базовый URL API</label>
-          <input id="input-base-url" type="text" value="https://generativelanguage.googleapis.com/v1beta" />
-          <small>Стандартный эндпоинт Google Gemini v1beta или ваш совместимый прокси.</small>
-        </div>
-
-        <div class="form-group">
-          <label for="input-system-prompt">Системная инструкция (System Instruction)</label>
-          <textarea id="input-system-prompt" rows="3" placeholder="Например: Отвечай кратко, точно и на русском языке..."></textarea>
-        </div>
-
-        <div class="form-grid">
-          <div class="form-group">
-            <label for="input-temperature">Temperature: <span id="val-temperature">0.7</span></label>
-            <input id="input-temperature" type="range" min="0" max="2" step="0.1" value="0.7" />
-          </div>
-          <div class="form-group">
-            <label for="input-max-tokens">Max Output Tokens</label>
-            <input id="input-max-tokens" type="number" min="256" max="65536" step="256" value="8192" />
-          </div>
-        </div>
-
-        <div class="form-group danger-zone">
-          <label>Локальные данные</label>
-          <div class="btn-row">
-            <button id="btn-export-all" class="secondary-btn" type="button">Экспорт всех чатов (JSON)</button>
-            <button id="btn-clear-all" class="danger-btn" type="button">Очистить всю историю</button>
-          </div>
+          <button id="btn-close-settings" class="icon-btn">✕</button>
         </div>
       </div>
-      <div class="modal-footer">
-        <button id="btn-save-settings" class="primary-btn" type="button">Сохранить</button>
+
+      <div class="settings-layout">
+        <nav class="settings-nav" aria-label="Разделы настроек">
+          <button class="settings-tab active" data-tab="tab-custom" data-i18n="tabCustom">Кастомизация</button>
+          <button class="settings-tab" data-tab="tab-connection" data-i18n="tabConnection">Подключение</button>
+          <button class="settings-tab" data-tab="tab-models" data-i18n="tabModels">Модели и генерация</button>
+          <button class="settings-tab" data-tab="tab-interface" data-i18n="tabInterface">Интерфейс и ввод</button>
+          <button class="settings-tab" data-tab="tab-data" data-i18n="tabData">Сброс и данные</button>
+          <button class="settings-tab" data-tab="tab-about" data-i18n="tabAbout">О приложении</button>
+        </nav>
+
+        <div class="settings-content">
+          <!-- Вкладка 1: Кастомизация -->
+          <section id="tab-custom" class="settings-pane active">
+            <h2 class="pane-title" data-i18n="tabCustom">Кастомизация</h2>
+
+            <div class="settings-card">
+              <div class="settings-card-head">
+                <div>
+                  <h3 data-i18n="styleTitle">Стиль</h3>
+                  <p data-i18n="styleDesc">Выберите авторское оформление или настройте детали под себя.</p>
+                </div>
+                <button id="btn-reset-theme" class="secondary-btn small-btn" type="button" data-i18n="reset">Сбросить</button>
+              </div>
+
+              <div class="theme-grid">
+                <button type="button" class="theme-card" data-preset="gemini-dark">
+                  <div class="theme-preview tp-gemini-dark">
+                    <span class="tp-orb"></span><span class="tp-aa">Aa</span>
+                  </div>
+                  <div class="theme-card-title" data-i18n="themeObsidian">Obsidian Spark</div>
+                  <div class="theme-card-desc" data-i18n="themeObsidianDesc">Глубокий графит и мягкое свечение</div>
+                </button>
+
+                <button type="button" class="theme-card" data-preset="aurora">
+                  <div class="theme-preview tp-aurora">
+                    <span class="tp-orb"></span><span class="tp-aa">Aa</span>
+                  </div>
+                  <div class="theme-card-title" data-i18n="themeAurora">Aurora Nebula</div>
+                  <div class="theme-card-desc" data-i18n="themeAuroraDesc">Космический индиго и полупрозрачное стекло</div>
+                </button>
+
+                <button type="button" class="theme-card" data-preset="solaris">
+                  <div class="theme-preview tp-solaris">
+                    <span class="tp-orb"></span><span class="tp-aa">Aa</span>
+                  </div>
+                  <div class="theme-card-title" data-i18n="themeSolaris">Solaris Light</div>
+                  <div class="theme-card-desc" data-i18n="themeSolarisDesc">Чистый дневной свет и чёткая типографика</div>
+                </button>
+
+                <button type="button" class="theme-card" data-preset="cyber">
+                  <div class="theme-preview tp-cyber">
+                    <span class="tp-orb"></span><span class="tp-aa">Aa</span>
+                  </div>
+                  <div class="theme-card-title" data-i18n="themeCyber">Cyber Synth</div>
+                  <div class="theme-card-desc" data-i18n="themeCyberDesc">Неоновый циан и острые грани</div>
+                </button>
+
+                <button type="button" class="theme-card" data-preset="matcha">
+                  <div class="theme-preview tp-matcha">
+                    <span class="tp-orb"></span><span class="tp-aa">Aa</span>
+                  </div>
+                  <div class="theme-card-title" data-i18n="themeMatcha">Matcha Zen</div>
+                  <div class="theme-card-desc" data-i18n="themeMatchaDesc">Спокойный лесной сланец для долгой работы</div>
+                </button>
+
+                <button type="button" class="theme-card" data-preset="vellum">
+                  <div class="theme-preview tp-vellum">
+                    <span class="tp-orb"></span><span class="tp-aa">Aa</span>
+                  </div>
+                  <div class="theme-card-title" data-i18n="themeVellum">Ink & Vellum</div>
+                  <div class="theme-card-desc" data-i18n="themeVellumDesc">Тёплый пергамент и книжные засечки</div>
+                </button>
+              </div>
+            </div>
+
+            <div class="settings-card">
+              <h3 data-i18n="fineTune">Тонкая настройка</h3>
+              <div class="controls-grid">
+                <div class="form-group">
+                  <label for="input-accent-color" data-i18n="accentColor">Акцентный цвет</label>
+                  <div class="color-row">
+                    <input id="input-accent-color" type="color" value="#a8c7fa" />
+                    <button type="button" class="swatch" data-color="#a8c7fa" style="background:#a8c7fa"></button>
+                    <button type="button" class="swatch" data-color="#2dd4bf" style="background:#2dd4bf"></button>
+                    <button type="button" class="swatch" data-color="#c084fc" style="background:#c084fc"></button>
+                    <button type="button" class="swatch" data-color="#22d3ee" style="background:#22d3ee"></button>
+                    <button type="button" class="swatch" data-color="#fb7185" style="background:#fb7185"></button>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label for="input-font-size"><span data-i18n="fontSize">Размер текста</span>: <span id="val-font-size">15</span> px</label>
+                  <input id="input-font-size" type="range" min="13" max="19" step="1" value="15" />
+                </div>
+
+                <div class="form-group">
+                  <label for="input-radius"><span data-i18n="cornerRadius">Скругление углов</span>: <span id="val-radius">20</span> px</label>
+                  <input id="input-radius" type="range" min="0" max="28" step="2" value="20" />
+                </div>
+
+                <div class="form-group">
+                  <label for="input-chat-width"><span data-i18n="chatWidth">Ширина ленты</span>: <span id="val-chat-width">820</span> px</label>
+                  <input id="input-chat-width" type="range" min="640" max="1160" step="20" value="820" />
+                </div>
+              </div>
+
+              <div class="form-group" style="margin-top:12px;">
+                <label for="input-greeting" data-i18n="greetingLabel">Текст приветствия</label>
+                <input id="input-greeting" type="text" placeholder="Привет! Чем помочь?" />
+              </div>
+            </div>
+          </section>
+
+          <!-- Вкладка 2: Подключение -->
+          <section id="tab-connection" class="settings-pane">
+            <h2 class="pane-title" data-i18n="tabConnection">Подключение</h2>
+            <div class="settings-card">
+              <div class="form-group">
+                <label for="input-api-key">Gemini API Key</label>
+                <div class="input-row">
+                  <input id="input-api-key" type="password" placeholder="AIzaSy..." autocomplete="off" />
+                  <button id="btn-toggle-key-vis" class="secondary-btn" type="button" data-i18n="show">Показать</button>
+                </div>
+                <small><span data-i18n="keyHint">Ключ из</span> <a href="https://aistudio.google.com/apikey" target="_blank" rel="noopener">Google AI Studio</a></small>
+              </div>
+
+              <div class="form-group" style="margin-top:14px;">
+                <label for="input-base-url" data-i18n="baseUrlLabel">Базовый URL API</label>
+                <input id="input-base-url" type="text" value="https://generativelanguage.googleapis.com/v1beta" />
+              </div>
+
+              <div class="toggle-row" style="margin-top:14px;">
+                <div>
+                  <strong data-i18n="streamingTitle">Потоковый вывод (Streaming SSE)</strong>
+                  <small data-i18n="streamingDesc">Ответ появляется по мере генерации, слово за словом</small>
+                </div>
+                <input id="input-streaming" type="checkbox" checked />
+              </div>
+            </div>
+          </section>
+
+          <!-- Вкладка 3: Модели и генерация -->
+          <section id="tab-models" class="settings-pane">
+            <h2 class="pane-title" data-i18n="tabModels">Модели и генерация</h2>
+            <div class="settings-card">
+              <div class="form-group">
+                <label for="input-system-prompt" data-i18n="sysPromptLabel">Системная инструкция</label>
+                <textarea id="input-system-prompt" rows="4" data-i18n-placeholder="sysPromptPh" placeholder="Дополнительные инструкции для модели..."></textarea>
+              </div>
+
+              <div class="controls-grid" style="margin-top:14px;">
+                <div class="form-group">
+                  <label for="input-temperature">Temperature: <span id="val-temperature">0.7</span></label>
+                  <input id="input-temperature" type="range" min="0" max="2" step="0.1" value="0.7" />
+                </div>
+                <div class="form-group">
+                  <label for="input-top-p">Top-P: <span id="val-top-p">0.95</span></label>
+                  <input id="input-top-p" type="range" min="0.1" max="1" step="0.05" value="0.95" />
+                </div>
+                <div class="form-group">
+                  <label for="input-max-tokens">Max Output Tokens</label>
+                  <input id="input-max-tokens" type="number" min="256" max="65536" step="256" value="8192" />
+                </div>
+                <div class="form-group">
+                  <label for="input-custom-model-id" data-i18n="addCustomModel">Добавить свою модель (ID)</label>
+                  <div class="input-row">
+                    <input id="input-custom-model-id" type="text" placeholder="gemini-3.8-flash" />
+                    <button id="btn-add-custom-model" class="secondary-btn" type="button">+</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- Вкладка 4: Интерфейс и ввод -->
+          <section id="tab-interface" class="settings-pane">
+            <h2 class="pane-title" data-i18n="tabInterface">Интерфейс и ввод</h2>
+            <div class="settings-card">
+              <div class="toggle-row">
+                <div>
+                  <strong data-i18n="enterSendTitle">Отправка сообщения по Enter</strong>
+                  <small data-i18n="enterSendDesc">Если выключено, отправка по Ctrl+Enter (Enter перенесёт строку)</small>
+                </div>
+                <input id="input-enter-send" type="checkbox" checked />
+              </div>
+
+              <div class="toggle-row">
+                <div>
+                  <strong data-i18n="showTokensTitle">Показывать счётчик токенов</strong>
+                  <small data-i18n="showTokensDesc">Отображать расход токенов под ответом модели</small>
+                </div>
+                <input id="input-show-tokens" type="checkbox" checked />
+              </div>
+
+              <div class="toggle-row">
+                <div>
+                  <strong data-i18n="autoCanvasTitle">Автооткрытие Canvas для HTML/SVG</strong>
+                  <small data-i18n="autoCanvasDesc">Открывать панель предпросмотра сразу после генерации</small>
+                </div>
+                <input id="input-auto-canvas" type="checkbox" />
+              </div>
+            </div>
+          </section>
+
+          <!-- Вкладка 5: Сброс и данные -->
+          <section id="tab-data" class="settings-pane">
+            <h2 class="pane-title" data-i18n="tabData">Сброс и данные</h2>
+            <div class="settings-card">
+              <p class="muted-note"><span data-i18n="storageNote">Путь хранения:</span> <code>%APPDATA%\GeminiDesktop\store.json</code></p>
+              <div class="btn-row" style="margin-top:14px; flex-wrap:wrap;">
+                <button id="btn-export-all" class="secondary-btn" type="button" data-i18n="exportBackup">Экспорт резервной копии (JSON)</button>
+                <button id="btn-import-all" class="secondary-btn" type="button" data-i18n="importBackup">Импорт из JSON</button>
+                <input id="import-file-input" type="file" accept=".json" class="hidden" />
+                <button id="btn-clear-all" class="danger-btn" type="button" data-i18n="clearHistory">Очистить историю чатов</button>
+              </div>
+            </div>
+          </section>
+
+          <!-- Вкладка 6: О приложении -->
+          <section id="tab-about" class="settings-pane">
+            <h2 class="pane-title" data-i18n="tabAbout">О приложении</h2>
+            <div class="settings-card">
+              <h3>Gemini Desktop</h3>
+              <p class="muted-note" style="margin-top:6px;" data-i18n="aboutVer">Версия 1.2.0 • Прямой клиент для Gemini API</p>
+              <div class="shortcuts-list">
+                <div><kbd>Enter</kbd> — <span data-i18n="scSend">отправить сообщение</span></div>
+                <div><kbd>Ctrl + N</kbd> — <span data-i18n="scNew">новый чат</span></div>
+                <div><kbd>Ctrl + ,</kbd> — <span data-i18n="scSettings">открыть настройки</span></div>
+                <div><kbd>Ctrl + B</kbd> — <span data-i18n="scSidebar">скрыть/показать боковую панель</span></div>
+              </div>
+            </div>
+          </section>
+
+          <div class="settings-footer">
+            <button id="btn-save-settings" class="primary-btn" type="button" data-i18n="saveApply">Сохранить и применить</button>
+          </div>
+        </div>
       </div>
     </div>
   </div>
